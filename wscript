@@ -30,12 +30,12 @@ def build(bld):
 
     bld(
         features='qt5 cxx cxxprogram',
-        use='QTCORE QTGUI BASE',
-        shlib='Qt5Gui Qt5Core',
+        use='QTCORE5 QTGUI5 BASE5',
+        #shlib='Qt5Gui Qt5Core',
         source='main.cpp notepad.cpp notepad.ui',
         target=APPNAME,
         includes='. /usr/include/qt5',
-        defines='WAF=1 QT_CORE_LIB=1 QT_GUI_LIB=1',  # test
+        #defines='WAF=1 QT_CORE5_LIB=1 QT_GUI_LIB=1',  # test
         #lang=bld.path.ant_glob('linguist/*.ts'),
         #langname='somefile',  # include the .qm files from somefile.qrc
     )
