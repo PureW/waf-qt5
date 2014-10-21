@@ -24,25 +24,26 @@ def options(opt):
 def configure(conf):
     conf.load('compiler_cxx qt5')
     conf.env.append_value('CXXFLAGS', ['-g', '-std=c++11', '-fPIC'])
-
+    conf.env.LIBPATH = ['/usr/lib/x86_64-linux-gnu']
 
 def build(bld):
 
     bld(
         features='qt5 cxx cxxprogram',
-        use='QTCORE5 QTGUI5 BASE5',
+        use='QT5CORE QT5GUI QT5BASE',
         #shlib='Qt5Gui Qt5Core',
         source='main.cpp notepad.cpp notepad.ui',
         target=APPNAME,
         includes='. /usr/include/qt5',
         #defines='WAF=1 QT_CORE5_LIB=1 QT_GUI_LIB=1',  # test
+        defines='WAF=1',
         #lang=bld.path.ant_glob('linguist/*.ts'),
         #langname='somefile',  # include the .qm files from somefile.qrc
     )
 
 # use the following if you want to add the include paths automatically
-if 1:
-     from waflib.TaskGen import feature, before_method, after_method
+from waflib.TaskGen import feature, before_method, after_method
+if 0:
      @feature('cxx')
      @after_method('process_source')
      @before_method('apply_incpaths')
